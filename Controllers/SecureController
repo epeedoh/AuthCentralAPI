@@ -1,0 +1,18 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AuthAPI.Controllers
+{
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class SecureController : ControllerBase
+    {
+        [HttpGet("getSecureData")]
+        public IActionResult GetSecureData()
+        {
+            // Seuls les utilisateurs authentifiés avec un JWT valide peuvent accéder à cette route
+            return Ok(new { data = "Ceci est une donnée sécurisée." });
+        }
+    }
+}
